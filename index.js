@@ -130,6 +130,15 @@ io.on('connection', (socket) => {
 
 app.post("/checkReport2", (req, res) => {
     console.log('checking report.... ' + JSON.stringify(req.body))
+    io.on('connection', (socket) => {
+        console.log('socket connected');
+
+        socket.on('join', (room) => {
+            // Join a specific room
+            socket.join(room);
+            console.log(`User joined room: ${room}`);
+          });
+    })
     res.json(chatRooms);
 });
 
