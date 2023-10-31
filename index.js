@@ -118,32 +118,32 @@ io.on('connection', (socket) => {
       });
 
   });
-  
-  app.post("/login", (req, res) => {
-    console.log('LOGIN')
-    const username = req.body.username;
-    const password = req.body.password;
-    let foundAccount = {}
-    let isInvalid = true;
-  
-    for (const user of USER) {
-      if (user.account.username === username && user.account.password === password) {
-        user.account.isLoggedIn = true; // Set the user as logged in
-        // res.json(user); // Return the user object
-        foundAccount = user;
-        isInvalid = false;
-      }
-    }
-    if (isInvalid) {
-      res.json({error: 'Invalid Credentials', account: {isLoggedIn: false}}); 
-    } else {
-      res.json(foundAccount)
-    }
-  });
 
   socket.on('disconnect', () => {
     console.log('A user disconnected');
   });
+});
+
+app.post("/login", (req, res) => {
+  console.log('LOGIN')
+  const username = req.body.username;
+  const password = req.body.password;
+  let foundAccount = {}
+  let isInvalid = true;
+
+  for (const user of USER) {
+    if (user.account.username === username && user.account.password === password) {
+      user.account.isLoggedIn = true; // Set the user as logged in
+      // res.json(user); // Return the user object
+      foundAccount = user;
+      isInvalid = false;
+    }
+  }
+  if (isInvalid) {
+    res.json({error: 'Invalid Credentials', account: {isLoggedIn: false}}); 
+  } else {
+    res.json(foundAccount)
+  }
 });
 
 server.listen(3000, () => {
