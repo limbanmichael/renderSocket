@@ -5,7 +5,15 @@ const socketIo = require('socket.io');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
+const bodyParser = require('body-parser')
 
+
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  }),
+);
 let chatRooms = []
 let reports = []
 const USER = [
