@@ -125,7 +125,8 @@ io.on('connection', (socket) => {
   
     socket.on('disconnect', () => {
       console.log('A user disconnected');
-      io.to(room).emit('message', []);
+      reports = []
+      io.to(room).emit('message', reports);
     });
 });
 
