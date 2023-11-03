@@ -85,7 +85,10 @@ io.on('connection', (socket) => {
           }
           reports.push(latestRequest);
           io.to(room).emit('message', reports);
-          console.log(reports)
+          // console.log(reports)
+          console.log(
+            JSON.stringify(reports, (key, value) => (key === 'img64' ? undefined : value))
+          );
           const data = {
             data: reports,
             message: 'success'
@@ -120,8 +123,10 @@ io.on('connection', (socket) => {
 
           // Update the original array with the modified item
           reports.length = 0; // Clear the original array
-          updatedReports.forEach((item) => reports.push(item)); // Update with modified items
-          console.log(updatedReports, ' UPDATED REPORTS')
+          updatedReports.forEach((item) => reports.push(item));
+          console.log(
+            JSON.stringify(updatedReports, (key, value) => (key === 'img64' ? undefined : value))
+          );
           io.to(room).emit('message', updatedReports);
           res.json(updatedReports);
       });
