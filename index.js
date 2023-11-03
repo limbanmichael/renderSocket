@@ -135,7 +135,8 @@ io.on('connection', (socket) => {
 
 app.post("/findReport", (req, res) => {
   console.log(req.body.reportId);
-  const foundReport = reports.find(x => x.id === req.body.reportId).id;
+  const item = reports.find(item => item.id === req.body.id)
+  console.log(foundReport, ' found report')
   res.json(foundReport)
 })
 
