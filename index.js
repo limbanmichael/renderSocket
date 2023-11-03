@@ -72,7 +72,8 @@ io.on('connection', (socket) => {
             details: req.body.details,
             status: req.body.status,
             coor: req.body.coor,
-            responderName: req.body.responderName
+            responderName: req.body.responderName,
+            img64: req.body.img64
           }
           reports.push(latestRequest);
           io.to(room).emit('message', reports);
