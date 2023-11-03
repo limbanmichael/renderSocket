@@ -133,6 +133,12 @@ io.on('connection', (socket) => {
   });
 });
 
+app.post("/findReport", (req, res) => {
+  console.log(req.body.reportId);
+  const foundReport = reports.find(x => x.id === req.body.reportId).id;
+  res.json(foundReport)
+})
+
 app.post("/login", (req, res) => {
   console.log('LOGIN')
   const username = req.body.username;
