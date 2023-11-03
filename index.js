@@ -143,7 +143,7 @@ app.post("/findReport", (req, res) => {
   console.log(req.body.reportId + " compare to " + reports[0].id);
   const foundReport = reports.find(item => item.id === req.body.reportId)
   console.log(foundReport.coor, ' found report')
-  res.json(foundReport)
+  res.json(foundReport.coor)
 })
 
 app.post("/login", (req, res) => {
