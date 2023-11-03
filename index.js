@@ -6,17 +6,19 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 const bodyParser = require('body-parser')
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.json({limit: '100mb'}));
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-    limit: '100mb',
-    parameterLimit: 50000,
-  }),
-);
+// app.use(bodyParser.json());
+// app.use(bodyParser.json({limit: '100mb'}));
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: true,
+//     limit: '100mb',
+//     parameterLimit: 50000,
+//   }),
+// );
 // app.use(express.json({limit: '100mb'}));
 // app.use(express.urlencoded({limit: '100mb'}));
 
