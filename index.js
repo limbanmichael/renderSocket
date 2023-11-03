@@ -140,8 +140,8 @@ io.on('connection', (socket) => {
 
 app.post("/findReport", (req, res) => {
   console.log(reports, ' current reports array')
-  console.log(req.body.reportId);
-  const foundReport = reports.find(item => item.id === req.body.id)
+  console.log(req.body.reportId + " compare to " + reports[0].id);
+  const foundReport = reports.find(item => item.id === req.body.reportId)
   console.log(foundReport, ' found report')
   res.json(foundReport)
 })
