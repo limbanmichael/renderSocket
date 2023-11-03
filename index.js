@@ -115,7 +115,12 @@ io.on('connection', (socket) => {
           // Use map to modify the item with the matching id
           const updatedReports = reports.map((item) => {
             if (item.id === req.body.id) {
-              return { ...item, status: "Accepted", responderName: req.body.responderName };
+              return { ...item, status: "Accepted", responderName: req.body.responderName, coor: {
+                latitude: req.body.lat,
+                longitude: req.body.lng,
+                reporterLocationLatitude: req.body.reporterLocationLatitude,
+                reporterLocationLongitude: req.body.reporterLocationLongitude
+              }};
             } else {
               return item;
             }
